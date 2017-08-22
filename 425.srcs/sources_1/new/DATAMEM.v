@@ -3,9 +3,9 @@
 // Company: 
 // Engineer: 
 // 
-// Create Date: 08/21/2017 10:58:30 PM
+// Create Date: 08/21/2017 11:49:18 PM
 // Design Name: 
-// Module Name: PC
+// Module Name: DATAMEM
 // Project Name: 
 // Target Devices: 
 // Tool Versions: 
@@ -20,16 +20,7 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module PC(newPC, progCount);
-    input [31:0]newPC;
-    output reg [31:0]progCount;
-    
-    initial begin
-        progCount = 0;
-    end
-    
-    always@(newPC)
-    begin
-        progCount = newPC;
-    end
+module DATAMEM(
+
+    );
 endmodule

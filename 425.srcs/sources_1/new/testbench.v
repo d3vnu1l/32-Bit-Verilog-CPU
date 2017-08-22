@@ -29,6 +29,13 @@ module testbench();
   wire [7:0] A, B, Breg;
   wire [15:0] result;
   
+  wire [31:0] progCount;
+  reg [31:0] newPC;
+  
+  
+  PC pc( .newPC(newPC),
+        .progCount(progCount));
+  
   ALU alu(.A(A),
           .B(B),
           .Op(Op),
@@ -56,17 +63,18 @@ module testbench();
     begin
 	//1. reset register
     Op <= 3'b010;
-    Asel <= 0;
-    Bsel <= 0;
-    Wdest <= 0;
-    clk <= 0;
-    control <= 1;
-    lw <= 0;
-    reset <= 1;
-    ext <= 0;
-    #10; clk <= ~clk; #10; clk <= ~clk;
+    Asel = 0;
+    Bsel = 0;
+    Wdest = 0;
+    clk = 0;
+    control = 1;
+    lw = 0;
+    reset = 1;
+    ext = 0;
+    #10; clk = ~clk; #10; clk = ~clk;
       
     //put something in R1 (5)
+    newPC = 8;
     Wdest = 1;
     lw = 1;
     reset = 0;
