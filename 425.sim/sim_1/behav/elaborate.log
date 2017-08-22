@@ -1,0 +1,18 @@
+Vivado Simulator 2017.2
+Copyright 1986-1999, 2001-2016 Xilinx, Inc. All Rights Reserved.
+Running: C:/Xilinx/Vivado/2017.2/bin/unwrapped/win64.o/xelab.exe -wto 995dd5b5e6674c37948e07d8a5032aa7 --debug typical --relax --mt 2 -L xil_defaultlib -L unisims_ver -L unimacro_ver -L secureip --snapshot testbench_behav xil_defaultlib.testbench xil_defaultlib.glbl -log elaborate.log 
+Using 2 slave threads.
+Starting static elaboration
+WARNING: [VRFC 10-278] actual bit length 5 differs from formal bit length 4 for port Asel [C:/Users/ryan/425/425.srcs/sources_1/new/testbench.v:43]
+WARNING: [VRFC 10-278] actual bit length 5 differs from formal bit length 4 for port Bsel [C:/Users/ryan/425/425.srcs/sources_1/new/testbench.v:44]
+WARNING: [VRFC 10-278] actual bit length 5 differs from formal bit length 4 for port Wdest [C:/Users/ryan/425/425.srcs/sources_1/new/testbench.v:45]
+Completed static elaboration
+Starting simulation data flow analysis
+Completed simulation data flow analysis
+Time Resolution for simulation is 1ps
+Compiling module xil_defaultlib.ALU
+Compiling module xil_defaultlib.MUX2TO1
+Compiling module xil_defaultlib.REGFILE
+Compiling module xil_defaultlib.testbench
+Compiling module xil_defaultlib.glbl
+Built simulation snapshot testbench_behav
