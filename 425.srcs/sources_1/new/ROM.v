@@ -12,13 +12,14 @@ module ROM(progCount, instruction);
         begin
             case(progCount)
                 0: instruction = 32'h00000000;    //load 0 r0
-                1: instruction = 32'h00010001;  //load 1 r1
-                2: instruction = 32'h00020002;  //load 2 r2
-                3: instruction = 32'h00030003;  //load 3 r3
-                4: instruction = 32'h04220000;  //adds r1 & r2
-                5: instruction = 32'h04220000;
-                6: instruction = 32'h04230000;
-                7: instruction = 32'h04230000;
+                1: instruction = 32'h00010006;  //load 6 r1
+                2: instruction = 32'h00020004;  //load 4 r2
+                3: instruction = 32'h00030002;  //load 2 r3
+                
+                4: instruction = 32'h08430802;  //adds r2 & r3, store r1
+                5: instruction = 32'h1043000C;  //add r2 & #12, store r1
+                6: instruction = 32'h08620806;  //sub r2 - r3, store r1 
+                7: instruction = 32'h08430806;
                 8: instruction = 32'hFFFFFFFF;
                 9: instruction = 32'hFFFFFFFF;
                 10: instruction = 32'hFFFFFFFF;

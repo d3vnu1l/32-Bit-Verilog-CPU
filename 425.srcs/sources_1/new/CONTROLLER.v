@@ -50,15 +50,26 @@ module CONTROLLER(instruction, RegDst, Branch, MemRead, MemtoReg, ALUOp, MemWrit
             end
             //r-type
             6'b000010: begin
-                      RegDst = 0;
+                      RegDst = 1;
                       Branch = 0;
                       MemRead = 0;
                       MemtoReg = 0;
-                      ALUOp = 0;
+                      ALUOp = 1;
                       MemWrite = 0;
                       ALUSrc = 0;
-                      RegWrite = 0;
+                      RegWrite = 1;
             end
+            //r-type with literal
+            6'b000100: begin
+                          RegDst = 0;
+                          Branch = 0;
+                          MemRead = 0;
+                          MemtoReg = 0;
+                          ALUOp = 1;
+                          MemWrite = 0;
+                          ALUSrc = 1;
+                          RegWrite = 1;
+                end
                   
          endcase
     end
