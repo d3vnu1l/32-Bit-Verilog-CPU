@@ -21,12 +21,12 @@
 
 
 module DATAMEM(WriteData, Address, ReadData, lw, rw, clk);
-  parameter DataSize = 16, FileSize = 32, SelSize = 16;
+  parameter DataSize = 31, FileSize = 32, SelSize = 16;
   
   input [(SelSize-1):0] WriteData,Address;//5 bit input for selection
   input clk, lw, rw;
 
-  output reg [15:0] ReadData=0;
+  output reg [31:0] ReadData=0;
   reg [DataSize-1:0] Data[FileSize-1:0];
   reg [DataSize-1:0] i;
  

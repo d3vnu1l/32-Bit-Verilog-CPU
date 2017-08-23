@@ -36,8 +36,9 @@ output reg [2:0]Op = 0;
             5: Op = 3'b101;
             6: Op = 3'b110;
             7: Op = 3'b111;
-            
         endcase
+    end 
+    else if(ALUOp == 0) begin
+        Op = 3'b010;        //alu pass thru
     end
-    else Op = 0;
 endmodule

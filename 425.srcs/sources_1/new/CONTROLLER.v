@@ -27,7 +27,7 @@ module CONTROLLER(instruction, RegDst, Branch, MemRead, MemtoReg, ALUOp, MemWrit
     begin
         case(instruction)
             //load immediate from 15:0 
-            0: begin
+            6'b000000: begin
                    RegDst = 0;
                    Branch = 0;
                    MemRead = 0;
@@ -35,13 +35,13 @@ module CONTROLLER(instruction, RegDst, Branch, MemRead, MemtoReg, ALUOp, MemWrit
                    ALUOp = 0;
                    MemWrite = 0;
                    ALUSrc = 1;
-                   RegWrite = 0;
+                   RegWrite = 1;
             end
-            //read
-            1: begin
+            //read from register
+            6'b000001: begin
                       RegDst = 0;
                       Branch = 0;
-                      MemRead = 1;
+                      MemRead = 0;
                       MemtoReg = 0;
                       ALUOp = 0;
                       MemWrite = 0;
@@ -49,7 +49,7 @@ module CONTROLLER(instruction, RegDst, Branch, MemRead, MemtoReg, ALUOp, MemWrit
                       RegWrite = 0;
             end
             //r-type
-            2: begin
+            6'b000010: begin
                       RegDst = 0;
                       Branch = 0;
                       MemRead = 0;

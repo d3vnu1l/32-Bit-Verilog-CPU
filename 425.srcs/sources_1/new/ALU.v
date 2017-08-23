@@ -23,8 +23,7 @@
 module ALU(A,B,Op,result);
   input [31:0] A,B;//8 bit input
   input [2:0] Op; //operation variable
-  output [31:0] result; //result in 16-bit output
-  reg [31:0] result=0; //16-bit regitser file
+  output reg [31:0] result =0; //result in 16-bit output
   always @(A or B or Op)
     begin
       case(Op)

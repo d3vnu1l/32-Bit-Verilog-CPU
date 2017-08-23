@@ -23,20 +23,16 @@
 module testbench();
   wire RegDst, Branch, MemRead, MemtoReg, ALUOp, MemWrite, ALUSrc, RegWrite;
 
-  wire [2:0] Op;
-  reg [4:0] Asel=0, Bsel=0; 
-  wire [4:0]Wdest;
   reg clk = 0;
-  reg [15:0] ext=0;
   
-  wire [15:0] A, B, Breg;
-  wire [15:0] result, ReadData, WriteData;
-  
+  wire [31:0] A, B, Breg;
+  wire [31:0] result, ReadData, WriteData;
+  wire [4:0] Wdest;
   wire [31:0] progCount;
   wire [31:0] newPC;
   wire [31:0] pcA;
   wire [31:0] pcB;
-  
+  wire [2:0] Op;
   reg [31:0] pcInc = 1;
   wire [31:0] addrExt;
   
@@ -93,11 +89,11 @@ module testbench();
   REGFILE regfile(.Asel(instruction[25:21]), 
           .Bsel(instruction[20:16]), 
           .Wdest(Wdest), 
+          .result(WriteData),
           .A(A), 
           .Breg(Breg), 
           .lw(RegWrite),
-          .clk(clk), 
-          .result(WriteData));
+          .clk(clk));
     
   ALUCTRL aluctrl(.instruction(instruction[5:0]),
                  .ALUOp(ALUOp),
@@ -116,8 +112,8 @@ module testbench();
     .rw(MemRead), 
     .clk(clk));
     
-   MUX2TO1 muxData(.Breg(ReadData),
-         .ext(result),
+   MUX2TO1 muxData(.Breg(result),
+         .ext(ReadData),
          .control(MemtoReg),
          .B(WriteData));    
   

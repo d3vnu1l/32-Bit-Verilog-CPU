@@ -11,22 +11,22 @@ module ROM(progCount, instruction);
     always@(progCount)
         begin
             case(progCount)
-                0: instruction = 32'h040F0F;
-                1: instruction = 32'h040F0F;
-                2: instruction = 32'h000000;
-                3: instruction = 32'h00FFFF;
-                4: instruction = 32'h000000;
-                5: instruction = 32'h000000;
-                6: instruction = 32'hFFFFFF;
-                7: instruction = 32'hFFFFFF;
-                8: instruction = 32'hFFFFFF;
-                9: instruction = 32'hFFFFFF;
-                10: instruction = 32'hFFFFFF;
-                11: instruction = 32'hFFFFFF;
-                12: instruction = 32'hFFFFFF;
-                13: instruction = 32'hFFFFFF;
-                14: instruction = 32'hFFFFFF;
-                15: instruction = 32'hFFFFFF;
+                0: instruction = 32'h00000000;    //load 0 r0
+                1: instruction = 32'h00010001;  //load 1 r1
+                2: instruction = 32'h00020002;  //load 2 r2
+                3: instruction = 32'h00030003;  //load 3 r3
+                4: instruction = 32'h04220000;  //adds r1 & r2
+                5: instruction = 32'h04220000;
+                6: instruction = 32'h04230000;
+                7: instruction = 32'h04230000;
+                8: instruction = 32'hFFFFFFFF;
+                9: instruction = 32'hFFFFFFFF;
+                10: instruction = 32'hFFFFFFFF;
+                11: instruction = 32'hFFFFFFFF;
+                12: instruction = 32'hFFFFFFFF;
+                13: instruction = 32'hFFFFFFFF;
+                14: instruction = 32'hFFFFFFFF;
+                15: instruction = 32'hFFFFFFFF;
             endcase
         end
 endmodule
