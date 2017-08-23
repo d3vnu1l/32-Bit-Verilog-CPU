@@ -28,6 +28,6 @@ module ADDER(a, b, clk, sum);
     
     always@(posedge clk)
     begin
-        sum <= a + b;
+        sum = a + b;
     end
 endmodule

@@ -3,9 +3,9 @@
 // Company: 
 // Engineer: 
 // 
-// Create Date: 08/21/2017 10:39:09 PM
+// Create Date: 08/22/2017 07:37:17 PM
 // Design Name: 
-// Module Name: MUX2TO1
+// Module Name: MUX2TO1_32
 // Project Name: 
 // Target Devices: 
 // Tool Versions: 
@@ -19,19 +19,17 @@
 // 
 //////////////////////////////////////////////////////////////////////////////////
 
-
-module MUX2TO1(Breg, ext, control, B);
-  input [7:0] ext, Breg;
+module MUX2TO1_32(A, B, control, out);
+  input [31:0] A, B;
   input control;
   
-  output reg [7:0] B;
+  output reg [31:0] out;
   
-  always@(Breg or ext or control)
+  always@(A or B or control)
   begin
     case(control)
-      0: B = Breg;
-      1: B = ext;
+      0: out = A;
+      1: out = B;
     endcase
   end
 endmodule
-

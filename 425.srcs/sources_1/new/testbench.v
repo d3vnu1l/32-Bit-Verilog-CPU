@@ -30,11 +30,42 @@ module testbench();
   wire [15:0] result;
   
   wire [31:0] progCount;
-  reg [31:0] newPC;
+  wire [31:0] newPC;
+  wire [31:0] pcA;
+  wire [31:0] pcB;
+  reg [1:0]ctrlPC ;
   
+  reg [31:0] pcInc;
+  wire [31:0] addrExt;
   
-  PC pc( .newPC(newPC),
+  wire [31:0]instruction;
+  
+  ROM rom(.progCount(progCount),
+          .instruction(instruction));
+          
+  ADDER incPC(
+      .a(progCount),
+      .b(pcInc),
+      .clk(clk),
+      .sum(pcA));
+      
+ ADDER addPC(
+    .a(pcA),
+    .b(addrExt<<2),
+    .clk(clk),
+    .sum(pcB));
+  
+  MUX2TO1_32 muxPC(.A(pcA),
+             .B(pcB),
+             .control(ctrlPC),
+             .out(newPC));   
+  
+  PC pc(.newPC(newPC),
         .progCount(progCount));
+        
+  EXTENDER extender(
+    .in(instruction[15:0]),
+    .out(addrExt));
   
   ALU alu(.A(A),
           .B(B),
@@ -43,9 +74,9 @@ module testbench();
           .clk(clk));
   
   MUX2TO1 mux2to1(.Breg(Breg),
-                 .ext(ext),
-                 .control(control),
-                 .B(B));    
+         .ext(ext),
+         .control(control),
+         .B(B));    
   
   REGFILE regfile(.Asel(Asel), 
           .Bsel(Bsel), 
@@ -62,6 +93,8 @@ module testbench();
   initial 
     begin
 	//1. reset register
+	pcInc = 4;
+	ctrlPC = 0;
     Op <= 3'b010;
     Asel = 0;
     Bsel = 0;
@@ -74,7 +107,7 @@ module testbench();
     #10; clk = ~clk; #10; clk = ~clk;
       
     //put something in R1 (5)
-    newPC = 8;
+    //newPC = 8;
     Wdest = 1;
     lw = 1;
     reset = 0;

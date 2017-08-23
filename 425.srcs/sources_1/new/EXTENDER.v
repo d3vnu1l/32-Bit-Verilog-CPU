@@ -11,11 +11,11 @@ always@(in)
     begin
         if(in[15:14]==1)
             begin
-                out <= in + 32'hFFFF0000;
+                out = in + 32'hFFFF0000;
             end   
         else
             begin
-                out <= in + 32'h00000000;
+                out = in + 32'h00000000;
             end
     end
 endmodule
