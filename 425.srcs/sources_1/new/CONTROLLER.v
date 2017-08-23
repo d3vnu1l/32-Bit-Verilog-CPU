@@ -70,7 +70,17 @@ module CONTROLLER(instruction, RegDst, Branch, MemRead, MemtoReg, ALUOp, MemWrit
                           ALUSrc = 1;
                           RegWrite = 1;
                 end
-                  
+            //branching type
+            6'b001000: begin
+                          RegDst = 0;
+                          Branch = 1;
+                          MemRead = 0;
+                          MemtoReg = 0;
+                          ALUOp = 1;
+                          MemWrite = 0;
+                          ALUSrc = 1;
+                          RegWrite = 0;
+                end    
          endcase
     end
 endmodule

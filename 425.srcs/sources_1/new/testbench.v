@@ -49,7 +49,7 @@ module testbench();
       
  ADDER addPC(
     .a(pcA),
-    .b(addrExt<<2),
+    .b(addrExt),
     .clk(clk),
     .sum(pcB));
   
@@ -140,6 +140,10 @@ module testbench();
     #10; clk = ~clk;
     #10; clk = ~clk;
     #10; clk = ~clk;
+    #10; clk = ~clk;
+    #10; clk = ~clk; 
+    #10; clk = ~clk;
+    #10; clk = ~clk; 
     #10; clk = ~clk;
   end
 endmodule
