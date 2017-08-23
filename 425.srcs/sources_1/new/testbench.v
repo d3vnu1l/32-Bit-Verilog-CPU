@@ -21,21 +21,23 @@
 
 
 module testbench();
-  reg [2:0] Op;
-  reg [4:0] Asel, Bsel, Wdest;
-  reg clk, control, lw, reset;
-  reg [7:0] ext;
+  wire RegDst, Branch, MemRead, MemtoReg, ALUOp, MemWrite, ALUSrc, RegWrite;
+
+  wire [2:0] Op;
+  reg [4:0] Asel=0, Bsel=0; 
+  wire [4:0]Wdest;
+  reg clk = 0;
+  reg [15:0] ext=0;
   
-  wire [7:0] A, B, Breg;
-  wire [15:0] result;
+  wire [15:0] A, B, Breg;
+  wire [15:0] result, ReadData, WriteData;
   
   wire [31:0] progCount;
   wire [31:0] newPC;
   wire [31:0] pcA;
   wire [31:0] pcB;
-  reg [1:0]ctrlPC ;
   
-  reg [31:0] pcInc;
+  reg [31:0] pcInc = 1;
   wire [31:0] addrExt;
   
   wire [31:0]instruction;
@@ -57,8 +59,18 @@ module testbench();
   
   MUX2TO1_32 muxPC(.A(pcA),
              .B(pcB),
-             .control(ctrlPC),
+             .control(Branch),
              .out(newPC));   
+  
+  CONTROLLER controller(.instruction(instruction[31:26]),
+   .RegDst(RegDst),
+    .Branch(Branch),
+     .MemRead(MemRead),
+      .MemtoReg(MemtoReg),
+       .ALUOp(ALUOp),
+        .MemWrite(MemWrite),
+         .ALUSrc(ALUSrc),
+          .RegWrite(RegWrite));
   
   PC pc(.newPC(newPC),
         .progCount(progCount));
@@ -67,74 +79,71 @@ module testbench();
     .in(instruction[15:0]),
     .out(addrExt));
   
-  ALU alu(.A(A),
-          .B(B),
-          .Op(Op),
-          .result(result),
-          .clk(clk));
   
   MUX2TO1 mux2to1(.Breg(Breg),
-         .ext(ext),
-         .control(control),
+         .ext(addrExt),
+         .control(ALUSrc),
          .B(B));    
   
-  REGFILE regfile(.Asel(Asel), 
-          .Bsel(Bsel), 
+  MUX2TO1_5 muxReg(.A(instruction[20:16]), 
+                   .B(instruction[15:11]), 
+                   .control(RegDst), 
+                   .out(Wdest));
+  
+  REGFILE regfile(.Asel(instruction[25:21]), 
+          .Bsel(instruction[20:16]), 
           .Wdest(Wdest), 
           .A(A), 
           .Breg(Breg), 
-          .lw(lw),
+          .lw(RegWrite),
           .clk(clk), 
-          .result(result),
-          .reset(reset));
+          .result(WriteData));
+    
+  ALUCTRL aluctrl(.instruction(instruction[5:0]),
+                 .ALUOp(ALUOp),
+                 .Op(Op));
+          
+          
+  ALU alu(.A(A),
+          .B(B),
+          .Op(Op),
+          .result(result));
+          
+  DATAMEM datamem(.WriteData(Breg), 
+    .Address(result),
+    .ReadData(ReadData), 
+    .lw(MemWrite), 
+    .rw(MemRead), 
+    .clk(clk));
+    
+   MUX2TO1 muxData(.Breg(ReadData),
+         .ext(result),
+         .control(MemtoReg),
+         .B(WriteData));    
   
  // This initial block is executed once
  // it provides the stimuli for the DUT
   initial 
     begin
-	//1. reset register
-	pcInc = 4;
-	ctrlPC = 0;
-    Op <= 3'b010;
-    Asel = 0;
-    Bsel = 0;
-    Wdest = 0;
-    clk = 0;
-    control = 1;
-    lw = 0;
-    reset = 1;
-    ext = 0;
-    #10; clk = ~clk; #10; clk = ~clk;
-      
-    //put something in R1 (5)
-    //newPC = 8;
-    Wdest = 1;
-    lw = 1;
-    reset = 0;
-    ext = 7'b00000101;
-    #10; clk = ~clk; #10; clk = ~clk;
-      
-    //put something in R2 (8)
-    Wdest = 2;
-    control = 1;
-    lw = 1;
-    ext = 7'b00001000;
-    #10; clk = ~clk; #10; clk = ~clk;
-      
-    //get r1 + r2
-    Asel = 1;
-    Bsel = 2;
-    control = 0;
-    lw = 0;
-    ext = 7'b00000101;
-    #10; clk = ~clk;#10; clk = ~clk;
-
-    //put result in R3
-    Asel = 3;
-    Bsel = 0;
-    Wdest = 3;
-    lw = 1;
-    #10; clk = ~clk;#10; clk = ~clk;
-      
+    #10; clk = ~clk; 
+    #10; clk = ~clk;
+    #10; clk = ~clk; 
+    #10; clk = ~clk;
+    #10; clk = ~clk; 
+    #10; clk = ~clk;
+    #10; clk = ~clk;
+    #10; clk = ~clk;
+    #10; clk = ~clk;
+    #10; clk = ~clk;
+    #10; clk = ~clk; 
+    #10; clk = ~clk;
+    #10; clk = ~clk; 
+    #10; clk = ~clk;
+    #10; clk = ~clk; 
+    #10; clk = ~clk;
+    #10; clk = ~clk;
+    #10; clk = ~clk;
+    #10; clk = ~clk;
+    #10; clk = ~clk;
   end
 endmodule

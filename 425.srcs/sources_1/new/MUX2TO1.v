@@ -21,10 +21,10 @@
 
 
 module MUX2TO1(Breg, ext, control, B);
-  input [7:0] ext, Breg;
+  input [31:0] ext, Breg;
   input control;
   
-  output reg [7:0] B;
+  output reg [31:0] B=0;
   
   always@(Breg or ext or control)
   begin

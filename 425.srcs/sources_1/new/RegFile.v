@@ -20,15 +20,15 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module REGFILE(Asel,Bsel, Wdest, A, Breg, lw, clk, result, reset);
-  parameter DataSize = 16, FileSize = 32, SelSize = 4;
+module REGFILE(Asel,Bsel, Wdest, result, A, Breg, lw, clk);
+  parameter DataSize = 32, FileSize = 32, SelSize = 5;
   
-  input [(SelSize-1):0] Asel,Bsel;//3 bit input
+  input [(SelSize-1):0] Asel,Bsel;//5 bit input for selection
   input [(SelSize-1):0] Wdest;
   input [(DataSize-1):0] result; //
-  input reset, clk, lw;
+  input clk, lw;
 
-  output reg [7:0] A, Breg; //outputs
+  output reg [31:0] A=0, Breg=0; //outputs
   reg [DataSize-1:0] Data[FileSize-1:0];
   reg [DataSize-1:0] i;
   
@@ -36,16 +36,16 @@ module REGFILE(Asel,Bsel, Wdest, A, Breg, lw, clk, result, reset);
   //assign A = Data[Asel];
  // assign Breg = Data[Bsel];
   
+  initial begin
+  for(i=0; (i<=(DataSize-1)); i=i+1)
+    begin
+      Data[i] = 0;
+    end
+  end
+  
   always @(posedge clk)
     begin
-      if(reset==1)
-        begin
-          for(i=0; (i<=(DataSize-1)); i=i+1)
-            begin
-              Data[i] = 0;
-            end
-      	end
-      else if(lw == 1)
+    if(lw == 1)
         begin
         	Data[Wdest] = result;
         end

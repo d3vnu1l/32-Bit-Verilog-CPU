@@ -6,10 +6,10 @@
 
 module EXTENDER(in, out);
 input [15:0]in;
-output reg [31:0]out;
+output reg [31:0]out=0;
 always@(in)
     begin
-        if(in[15:14]==1)
+        if(in[15]==1)
             begin
                 out = in + 32'hFFFF0000;
             end   

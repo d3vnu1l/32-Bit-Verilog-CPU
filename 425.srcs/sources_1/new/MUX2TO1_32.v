@@ -23,7 +23,7 @@ module MUX2TO1_32(A, B, control, out);
   input [31:0] A, B;
   input control;
   
-  output reg [31:0] out;
+  output reg [31:0] out=0;
   
   always@(A or B or control)
   begin

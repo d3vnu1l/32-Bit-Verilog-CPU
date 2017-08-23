@@ -20,13 +20,12 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module ALU(A,B,Op,result, clk);
-  input clk;
-  input [7:0] A,B;//8 bit input
+module ALU(A,B,Op,result);
+  input [31:0] A,B;//8 bit input
   input [2:0] Op; //operation variable
-  output [15:0] result; //result in 16-bit output
-  reg [15:0] result; //16-bit regitser file
-  always @(posedge clk)
+  output [31:0] result; //result in 16-bit output
+  reg [31:0] result=0; //16-bit regitser file
+  always @(A or B or Op)
     begin
       case(Op)
       3'b000: result = A & B;//AND

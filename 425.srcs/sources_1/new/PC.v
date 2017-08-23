@@ -22,11 +22,7 @@
 
 module PC(newPC, progCount);
     input [31:0]newPC;
-    output reg [31:0]progCount;
-    
-    initial begin
-        progCount = 0;
-    end
+    output reg [31:0]progCount=0;
     
     always@(newPC)
     begin

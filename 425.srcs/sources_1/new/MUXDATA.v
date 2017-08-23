@@ -3,9 +3,9 @@
 // Company: 
 // Engineer: 
 // 
-// Create Date: 08/21/2017 11:03:50 PM
+// Create Date: 08/22/2017 09:49:09 PM
 // Design Name: 
-// Module Name: ADDER
+// Module Name: MUXDATA
 // Project Name: 
 // Target Devices: 
 // Tool Versions: 
@@ -20,14 +20,7 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module ADDER(a, b, clk, sum);
-    input [31:0] a;
-    input [31:0] b;
-    input clk;
-    output reg [31:0] sum=0;
-    
-    always@(posedge clk)
-    begin
-        sum = a + b;
-    end
+module MUXDATA(
+
+    );
 endmodule

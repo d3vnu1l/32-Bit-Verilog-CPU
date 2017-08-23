@@ -2,12 +2,20 @@ INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/ryan/425project/32-Bit-Ver
 INFO: [VRFC 10-311] analyzing module ADDER
 INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/ryan/425project/32-Bit-Verilog-CPU/425.srcs/sources_1/new/ALU.v" into library xil_defaultlib
 INFO: [VRFC 10-311] analyzing module ALU
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/ryan/425project/32-Bit-Verilog-CPU/425.srcs/sources_1/new/ALUCTRL.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module ALUCTRL
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/ryan/425project/32-Bit-Verilog-CPU/425.srcs/sources_1/new/CONTROLLER.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module CONTROLLER
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/ryan/425project/32-Bit-Verilog-CPU/425.srcs/sources_1/new/DATAMEM.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module DATAMEM
 INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/ryan/425project/32-Bit-Verilog-CPU/425.srcs/sources_1/new/EXTENDER.v" into library xil_defaultlib
 INFO: [VRFC 10-311] analyzing module EXTENDER
 INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/ryan/425project/32-Bit-Verilog-CPU/425.srcs/sources_1/new/MUX2TO1.v" into library xil_defaultlib
 INFO: [VRFC 10-311] analyzing module MUX2TO1
 INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/ryan/425project/32-Bit-Verilog-CPU/425.srcs/sources_1/new/MUX2TO1_32.v" into library xil_defaultlib
 INFO: [VRFC 10-311] analyzing module MUX2TO1_32
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/ryan/425project/32-Bit-Verilog-CPU/425.srcs/sources_1/new/MUX2TO1_5.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module MUX2TO1_5
 INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/ryan/425project/32-Bit-Verilog-CPU/425.srcs/sources_1/new/PC.v" into library xil_defaultlib
 INFO: [VRFC 10-311] analyzing module PC
 INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/ryan/425project/32-Bit-Verilog-CPU/425.srcs/sources_1/new/ROM.v" into library xil_defaultlib
